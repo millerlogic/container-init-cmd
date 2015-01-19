@@ -9,6 +9,7 @@ ADD init-cmd.sh /sbin/init-cmd
 ENTRYPOINT ["/sbin/init-cmd"]
 ```
 
-and your normal CMD line can still be used, it will be added as an init.d script in the container.
+With this your normal CMD line can still be used, it will be added as an init.d script in the container.
+Note that you should use the JSON array notation with CMD otherwise your volumes might not sync with the shell in time.
 
 The docker USER must be root; if you want another user, you can use ENV CMD_USER=
