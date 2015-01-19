@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Copyright 2015 Christopher E Miller
+# Under the MIT License
+
 # Usage: set the docker ENTRYPOINT ["/sbin/init-cmd"], use docker CMD as you would normally.
 # Caveat: docker USER must be root; if you want another user, you can use ENV CMD_USER=.
 
@@ -41,6 +44,7 @@ if [ x"$1" == x"start" ]; then
 		rm /var/run/init-cmd.pid;
 		halt
 	) &
+	disown
 elif [ x"$1" == x"stop" ]; then
 	if [ -f /var/run/init-cmd.pid ]; then
 		kill $(cat /var/run/init-cmd.pid)
@@ -63,6 +67,5 @@ l4:4:wait:/etc/init.d/rc 4
 l5:5:wait:/etc/init.d/rc 5
 l6:6:wait:/etc/init.d/rc 6" >/etc/inittab
 
-echo "init PID is $$"
 echo $$ >/var/run/init.pid
 exec /sbin/init
