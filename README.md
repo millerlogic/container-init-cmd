@@ -13,3 +13,5 @@ With this your normal CMD line can still be used, it will be added as an init.d 
 Note that you should use the JSON array notation with CMD otherwise your volumes might not sync with the shell in time.
 
 The docker USER must be root; if you want another user, you can use ENV CMD_USER=
+
+Tested with Debian containers, might work with Ubuntu and perhaps others.
